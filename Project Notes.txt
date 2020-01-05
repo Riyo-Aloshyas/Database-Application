@@ -1,0 +1,20 @@
+11- part purchase
+dont keep track of which/what? part and how many
+
+ONLY VENDOR
+DOESNT DISC PARTS
+
+5 ADDITTIONAL RULES
+KEEP TRACK OF PARTS
+
+1. Create a user "Competition" in PDB1
+2. Give necessary permissions, grants to Competition
+3. Connect as Competition
+4. Write a DDL script to create the tables (Contestants, Knife, Knife_Test, etc)
+    Assign primary and foreign keys
+5. Write a script to insert data provided
+6. select * from each table to verify all data is there
+7. Write SQL for required queries
+8. Submit parts 4,5,7 on 11/03 in notepad/textpad
+
+NOTE: Refer to Figure 4.1 or 6.1 for syntax

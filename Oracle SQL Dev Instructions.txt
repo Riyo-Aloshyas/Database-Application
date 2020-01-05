@@ -1,0 +1,60 @@
+How to install Oracle Database 12c on Windows: https://www.youtube.com/watch?v=nD2bN1t-CwI
+How to install Oracle SQL Developer: https://www.youtube.com/watch?v=ClEdGRGnm1c
+
+Oracle Database 12c Release 2: https://www.oracle.com/database/technologies/oracle-database-software-downloads.html
+SQL Developer 18.3 Downloads: https://www.oracle.com/tools/downloads/sqldev-v183-downloads.html
+
+
+Step 1:
+ - start sqlplus
+ - user_name: / as sysdba
+SQL> show user
+
+Step 2: 
+SQL> column name format a20;
+SQL> select name, con_id from v$pdbs;
+        name          con_id
+     your_pdbname   3 or some other id
+
+SQL> alter pluggable database pdbname open;
+SQL> select name as "Service Name" from v$active_services where con_id = 3;
+
+Step 3: Take this service name to login as system under your pdb
+Step 4: create new user once you have done step 3 (company)
+Step 5: 
+SQL> alter session set container=your_pdbname;
+SQL> conn company/password@your_pdbname
+Error: Session Priviledge
+SQL> grant connect, resource to company;
+Grant Succeeded
+SQL> conn company/password@your_pdbname
+TNS names error or connected
+
+FIX TNS name:
+command prompt
+C:\windows\system32>netca or in terminal> netca
+
+when the Net Configuration Assistant pops up:
+a. Select "Local Net Service Name Configuration"
+b. Select Add
+c. Service Name from Step 2 above
+d. Select TCP
+e. Hostname: enter localhost and leave the check on port 1521
+f. Yes, perform Test
+g. Click on Change Login: Enter System and yourpdb password
+h. Enter a net service name whatever you want to call it
+
+SQL> conn company/password@your_pdbname
+Connected
+
+Step 6: Launch SQL Developer
+        - create a new connection
+        - username/password is company and password
+        - Service name for pdb from Step 2 above
+
+==============
+MAC Users:
+
+In virtual box terminal: 
+1. sqlplus /nolog
+2. CONN company/password@//localhost:1521/your_PDB
