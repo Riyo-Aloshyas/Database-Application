@@ -1,0 +1,117 @@
+CREATE TABLE CUSTOMER (
+    Fname       VARCHAR2(15)  NOT NULL,
+    Minit       VARCHAR2(1),
+    Lname       VARCHAR2(15) NOT NULL,
+    P_id         VARCHAR2(9) NOT NULL,
+    phone_num         INT      NOT NULL,
+    age	    INT NOT NULL,
+    Bdate       DATE,
+    Address     VARCHAR2(30),
+    Sex         VARCHAR2(1),
+    Fav_salesman	VARCHAR2(25) NOT NULL,
+    PRIMARY KEY (P_id),
+    FOREIGN KEY (Fav_salesman) REFERENCES CUSTOMER(P_id));
+
+CREATE TABLE EMPLOYEE (
+    Fname       VARCHAR2(15)  NOT NULL,
+    Minit       VARCHAR2(1),
+    Lname       VARCHAR2(15) NOT NULL,
+    Ssn         VARCHAR2(9) NOT NULL,
+    P_id         VARCHAR2(9) NOT NULL,
+    phone_num         INT      NOT NULL,
+    age	    INT NOT NULL,
+    Bdate       DATE,
+    Address     VARCHAR2(30),
+    Sex         VARCHAR2(1),
+    Salary      NUMBER(10,2),
+    Super_ssn   VARCHAR2(9),
+    Dno         NUMBER NOT NULL,
+    Rank	    VARCHAR2(10) NOT NULL,
+    Title	   VARCHAR2(15) NOT NULL,
+    PRIMARY KEY (Ssn),
+    FOREIGN KEY (Super_ssn) REFERENCES EMPLOYEE(Ssn));
+
+CREATE TABLE POTENTIAL_EMPLOYEE (
+    Fname       VARCHAR2(15)  NOT NULL,
+    Minit       VARCHAR2(1),
+    Lname       VARCHAR2(15) NOT NULL,
+    Ssn         VARCHAR2(9) NOT NULL,
+    P_id         VARCHAR2(9) NOT NULL,
+    phone_num         INT      NOT NULL,
+    age	    INT NOT NULL,
+    Bdate       DATE,
+    Address     VARCHAR2(30),
+    Sex         VARCHAR2(1),
+    PRIMARY KEY (P_id),
+    FOREIGN KEY (Ssn) REFERENCES POTENTIAL_EMPLOYEE (P_id));
+
+CREATE TABLE SITE(
+    Site_id	VARCHAR2(9) NOT NULL,
+    Site_name VARCHAR2(20) NOT NULL,
+    Site_location VARCHAR(30) NOT NULL,
+    PRIMARY KEY (Site_id),
+    FOREIGN KEY (Site_name) REFERENCES SITE(Site_id));
+
+CREATE TABLE DEPARTMENT(
+    Dep_id	VARCHAR2(9) NOT NULL,
+    Dep_name VARCHAR2(20) NOT NULL,
+    Start_time DATE,
+    End_time DATE,
+    PRIMARY KEY (Site_id),
+    FOREIGN KEY (Site_name) REFERENCES DEPARTMENT(Site_id));
+
+CREATE TABLE SALARY(
+    Transaction_number	INT NOT NULL,
+    Pay_date	DATE,
+    Amount_monthly	INT NOT NULL,
+    PRIMARY KEY (Transaction_number),
+    FOREIGN KEY (Transaction_number) REFERENCES SALARY(Transaction_number));
+);
+
+CREATE TABLE JOB(
+    Job_id	VARCHAR2(9) NOT NULL,
+    Job_name VARCHAR(20) NOT NULL,
+    Job_description	VARCHAR2(100) NOT NULL,
+    Dated_posted	DATE,
+    PRIMARY KEY (Job_id),
+    FOREIGN KEY (Job_name) REFERENCES JOB(Job_id));
+
+CREATE TABLE PRODUCT(
+    Product_id	VARCHAR2(9) NOT NULL,
+    Product_type 	VARCHAR(20) NOT NULL,
+    Size		VARCHAR2(10) NOT NULL,
+    Price		INT NOT NULL,
+    Weight		VARCHAR2(15) NOT NULL,
+    Style		VARCHAR2(10) NOT NULL,
+    PRIMARY KEY (Product_id),
+    FOREIGN KEY (Product_type) REFERENCES PRODUCT(Product_id));
+
+CREATE TABLE VENDOR(
+    Vendor_id	VARCHAR2(9) NOT NULL,
+    Vendor_name	VARCHAR(20) NOT NULL,
+    Vendor_address	VARCHAR2(30),
+    Account_number	INT NOT NULL,
+    Credit_rating	VARCHAR2(15) NOT NULL,
+    Vendor_URL	VARCHAR2(99) NOT NULL,
+    PRIMARY KEY (Vendor_id),
+    FOREIGN KEY (Vendor_name) REFERENCES VENDOR(Vendor_id));
+
+CREATE TABLE PART_PURCHASE(
+    Purchase_id	VARCHAR2(9) NOT NULL,
+    Part_type	VARCHAR(20) NOT NULL,
+    Part_name	VARCHAR2(30) NOT NULL,
+    Part_notes	VARCHAR2(150) NOT NULL,
+    P_quantity	VARCHAR2(10) NOT NULL,
+    P_price	VARCHAR2(10) NOT NULL,
+    PRIMARY KEY (Purchase_id),
+    FOREIGN KEY (Part_name) REFERENCES PART_PURCHASE(Purchase_id));
+
+CREATE TABLE INTERVIEW(
+    Interview_id		VARCHAR(9) NOT NULL,
+    Candidate_name	VARCHAR2(30) NOT NULL,
+    Interviewer_name	VARCHAR(30) NOT NULL,
+    Interview_time	DATE,
+    Avg_grade		INT NOT NULL,
+    Number_rounds	INT NOT NULL,
+    PRIMARY KEY (Interview_id),
+    FOREIGN KEY() REFERENCES INTERVIEW(Interview_id));
