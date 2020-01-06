@@ -8,8 +8,8 @@ company. Create a database management system based on given requirements.
 
 Project Questions:
 
-Can you think 5 more rules (other than the one explicitly described above) that are likely to be
-used in a company?
+Can you think 5 more rules (other than the one explicitly described in thr requirements) 
+that are likely to be used in a company?
 
 1) Employee must be assigned to ONE department but can work in multiple departments.
 2) Information regarding part (id, name, price, quantity) would be in PART_PURCHASE.
